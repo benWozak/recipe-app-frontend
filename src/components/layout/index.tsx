@@ -6,7 +6,7 @@ type Props = {};
 
 function Layout({}: Props) {
   return (
-    <div className="mx-auto h-svh">
+    <div data-theme="nord" className="mx-auto h-svh">
       <main className="flex flex-col justify-center items-center h-svh">
         <Outlet />
       </main>
