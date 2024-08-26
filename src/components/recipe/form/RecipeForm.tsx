@@ -5,7 +5,7 @@ import { z } from "zod";
 import { urlRegex, instagramRegex } from "../../../util/RegEx";
 
 import { ArrowBigLeft } from "lucide-react";
-// import IngredientGroups from "./IngredientGroups";
+import Macros from "./Macros";
 import RecipeEditor from "./RecipeEditor";
 
 // Zod schema for a single ingredient
@@ -40,6 +40,7 @@ const recipeSchema = z.object({
       step: z.string().min(1, { message: "Instruction step is required" }),
     })
   ),
+  notes: z.string().optional(),
   macros: z.object({
     servingSize: z.string(),
     calories: z.number().nonnegative(),
@@ -353,7 +354,26 @@ function RecipeForm({ onReturnCallback }: Props) {
             <label className="label pb-0">
               <span className="label-text">Macros</span>
             </label>
-            {/* Add fields for macros */}
+            <Controller name="macros" control={control} render={({ field }) => <Macros content={field.value} />} />
+          </div>
+
+          <div className="form-control">
+            <label className="label pb-0">
+              <span className="label-text">Recipe Notes</span>
+            </label>
+            <Controller
+              name="notes"
+              control={control}
+              render={({ field }) => (
+                <RecipeEditor
+                  content={field.value}
+                  onChange={(content) => {
+                    field.onChange(content);
+                    field.onBlur();
+                  }}
+                />
+              )}
+            />
           </div>
 
           <button type="submit" className="btn btn-primary mt-4">

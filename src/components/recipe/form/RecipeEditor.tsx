@@ -61,7 +61,7 @@ const RecipeEditor = ({ content, onChange }) => {
   });
 
   return (
-    <div className="border rounded p-4">
+    <div className="border border-gray-300 rounded p-4">
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
     </div>
