@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { BookText, NotebookPen, CalendarDays } from "lucide-react";
+import {
+  BookText,
+  NotebookPen,
+  CalendarDays,
+  ShoppingCart,
+} from "lucide-react";
 
 type Props = {};
 
 function BottomNav({}: Props) {
   const [selected, setSelected] = useState<string | null>();
   return (
-    <nav className="btm-nav sticky bottom-0">
+    <nav className="btm-nav fixed bottom-0">
       <Link
         to="/list"
         onClick={() => setSelected("list")}
@@ -36,6 +41,15 @@ function BottomNav({}: Props) {
       >
         <CalendarDays />
         <span className="btm-nav-label">Meal Plan</span>
+      </button>
+      <button
+        disabled
+        className={`${
+          selected === "meal-plan" ? "active border-blue-600" : ""
+        }bg-blue-200 text-blue-600 disabled`}
+      >
+        <ShoppingCart />
+        <span className="btm-nav-label">Grocery</span>
       </button>
     </nav>
   );

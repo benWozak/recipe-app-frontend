@@ -63,9 +63,21 @@ export interface ImageEntry {
   updatedAt: Date;
 }
 
+/**********************************************
+ *                Source Metadata              *
+ **********************************************/
+
+export interface SourceEntry {
+  type: string;
+  url: string;
+}
+
+/***********************************************/
+
 export interface Recipe {
   id: number;
   title: string;
+  source: SourceEntry | null;
   image: ImageEntry | null;
   prepTime: string | null;
   cookTime: string | null;
